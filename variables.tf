@@ -5,11 +5,13 @@ variable "name" {
 
 variable "principal_type" {
   type        = string
+  default     = ""
   description = "The type of principal"
 }
 
-variable "principal_identifier" {
+variable "principal_identifiers" {
   type        = list(string)
+  default     = []
   description = "List of identifiers for principals"
 }
 
