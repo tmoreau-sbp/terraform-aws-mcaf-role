@@ -15,9 +15,9 @@ variable "principal_identifiers" {
   description = "List of identifiers for principals"
 }
 
-variable "policies" {
-  type        = list(string)
-  description = "List of policies to attach to the role"
+variable "policy" {
+  type        = string
+  description = "The policy to attach to the role"
 }
 
 variable "tags" {

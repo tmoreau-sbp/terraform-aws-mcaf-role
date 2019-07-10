@@ -16,9 +16,8 @@ resource "aws_iam_role" "default" {
   tags               = var.tags
 }
 
-resource "aws_iam_role_policy" "test_policy" {
-  count  = length(var.policies)
-  name   = "${var.name}-policy-${count.index}"
+resource "aws_iam_role_policy" "default" {
+  name   = var.name
   role   = aws_iam_role.default.id
-  policy = var.policies[count.index]
+  policy = var.policy
 }
