@@ -5,7 +5,7 @@ variable "name" {
 
 variable "assume_policy" {
   type        = string
-  default     = ""
+  default     = null
   description = "The assume policy to attach to the role"
 }
 
@@ -23,7 +23,14 @@ variable "principal_identifiers" {
 
 variable "role_policy" {
   type        = string
+  default     = null
   description = "The IAM policy to attach to the role"
+}
+
+variable "policy_arns" {
+  type        = set(string)
+  default     = []
+  description = "A set of policy ARNs to attach to the user"
 }
 
 variable "tags" {

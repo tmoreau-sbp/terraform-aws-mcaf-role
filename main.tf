@@ -23,7 +23,15 @@ resource "aws_iam_role" "default" {
 }
 
 resource "aws_iam_role_policy" "default" {
+  count  = var.role_policy != null ? 1 : 0
   name   = var.name
   role   = aws_iam_role.default.id
   policy = var.role_policy
+}
+
+resource "aws_iam_role_policy_attachment" "default" {
+  for_each = var.policy_arns
+
+  role       = aws_iam_role.default.name
+  policy_arn = each.value
 }
