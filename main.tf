@@ -2,6 +2,8 @@ locals {
   assume_policy = var.assume_policy != "" ? var.assume_policy : data.aws_iam_policy_document.default.json
 }
 
+provider "aws" {}
+
 data "aws_iam_policy_document" "default" {
   statement {
     actions = [
