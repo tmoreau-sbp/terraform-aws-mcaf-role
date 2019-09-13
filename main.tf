@@ -17,14 +17,14 @@ data "aws_iam_policy_document" "default" {
 }
 
 resource "aws_iam_role" "default" {
-  name               = var.name
+  name               = "${var.name}Role"
   assume_role_policy = local.assume_policy
   tags               = var.tags
 }
 
 resource "aws_iam_role_policy" "default" {
   count  = var.role_policy != null ? 1 : 0
-  name   = var.name
+  name   = "${var.name}Policy"
   role   = aws_iam_role.default.id
   policy = var.role_policy
 }
