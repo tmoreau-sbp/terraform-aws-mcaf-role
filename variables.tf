@@ -33,6 +33,12 @@ variable "policy_arns" {
   description = "A set of policy ARNs to attach to the user"
 }
 
+variable "postfix" {
+  type        = bool
+  default     = true
+  description = "Postfix the role and policy names with Role and Policy"
+}
+
 variable "tags" {
   type        = map(string)
   description = "A mapping of tags to assign to the role"
