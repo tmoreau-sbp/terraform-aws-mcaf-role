@@ -23,7 +23,7 @@ variable "principal_identifiers" {
 
 variable "role_policy" {
   type        = string
-  default     = null
+  default     = ""
   description = "The IAM policy to attach to the role"
 }
 
