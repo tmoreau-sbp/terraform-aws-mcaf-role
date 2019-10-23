@@ -1,5 +1,6 @@
 locals {
   assume_policy = var.assume_policy != null ? var.assume_policy : data.aws_iam_policy_document.default.json
+  create_policy = var.force_create_policy != null ? (var.force_create_policy ? 1 : 0): (var.role_policy != "" ? 1 : 0)
 }
 
 provider "aws" {}
@@ -23,7 +24,7 @@ resource "aws_iam_role" "default" {
 }
 
 resource "aws_iam_role_policy" "default" {
-  count  = var.role_policy != "" ? 1 : 0
+  count  = local.create_policy
   name   = "${var.name}${var.postfix ? "Policy" : ""}"
   role   = aws_iam_role.default.id
   policy = var.role_policy
