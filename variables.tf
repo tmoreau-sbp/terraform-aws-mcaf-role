@@ -9,6 +9,12 @@ variable "assume_policy" {
   description = "The assume policy to attach to the role"
 }
 
+variable "force_create_policy" {
+  type        = bool
+  default     = null
+  description = "Overrule whether the role policy has to be created."
+}
+
 variable "principal_type" {
   type        = string
   default     = ""
