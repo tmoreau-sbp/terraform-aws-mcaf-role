@@ -12,3 +12,8 @@ output "unique_id" {
   value       = aws_iam_role.default.unique_id
   description = "Unique ID of the role"
 }
+
+output "name" {
+  value       = aws_iam_role.default.name
+  description = "The name of the role"
+}
