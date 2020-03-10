@@ -1,6 +1,6 @@
 locals {
   assume_policy = var.assume_policy != null ? var.assume_policy : data.aws_iam_policy_document.default.json
-  create_policy = var.force_create_policy != null ? (var.force_create_policy ? 1 : 0): (var.role_policy != "" ? 1 : 0)
+  create_policy = var.force_create_policy != null ? (var.force_create_policy ? 1 : 0) : (var.role_policy != "" ? 1 : 0)
 }
 
 provider "aws" {}
@@ -18,9 +18,10 @@ data "aws_iam_policy_document" "default" {
 }
 
 resource "aws_iam_role" "default" {
-  name               = "${var.name}${var.postfix ? "Role" : ""}"
-  assume_role_policy = local.assume_policy
-  tags               = var.tags
+  name                 = "${var.name}${var.postfix ? "Role" : ""}"
+  assume_role_policy   = local.assume_policy
+  max_session_duration = var.max_session_duration
+  tags                 = var.tags
 }
 
 resource "aws_iam_role_policy" "default" {
