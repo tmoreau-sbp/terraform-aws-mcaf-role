@@ -17,8 +17,8 @@ variable "force_create_policy" {
 
 variable "max_session_duration" {
   type        = number
-  default     = 1
-  description = "The maximum session duration for the role"
+  default     = 3600
+  description = "The maximum session duration (in minutes) for the role"
 }
 
 variable "principal_type" {
