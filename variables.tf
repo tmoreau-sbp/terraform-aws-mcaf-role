@@ -15,6 +15,12 @@ variable "force_create_policy" {
   description = "Overrule whether the role policy has to be created."
 }
 
+variable "max_session_duration" {
+  type        = number
+  default     = 1
+  description = "The maximum session duration for the role"
+}
+
 variable "principal_type" {
   type        = string
   default     = ""
@@ -25,12 +31,6 @@ variable "principal_identifiers" {
   type        = list(string)
   default     = []
   description = "List of identifiers for principals"
-}
-
-variable "role_policy" {
-  type        = string
-  default     = ""
-  description = "The IAM policy to attach to the role"
 }
 
 variable "policy_arns" {
@@ -44,6 +44,13 @@ variable "postfix" {
   default     = true
   description = "Postfix the role and policy names with Role and Policy"
 }
+
+variable "role_policy" {
+  type        = string
+  default     = ""
+  description = "The IAM policy to attach to the role"
+}
+
 
 variable "tags" {
   type        = map(string)
