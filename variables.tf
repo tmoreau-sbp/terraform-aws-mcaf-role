@@ -9,10 +9,10 @@ variable "assume_policy" {
   description = "The assume policy to attach to the role"
 }
 
-variable "force_create_policy" {
+variable "create_policy" {
   type        = bool
   default     = null
-  description = "Overrule whether the role policy has to be created."
+  description = "Overrule whether the IAM role policy has to be created"
 }
 
 variable "max_session_duration" {
@@ -47,7 +47,7 @@ variable "postfix" {
 
 variable "role_policy" {
   type        = string
-  default     = ""
+  default     = null
   description = "The IAM policy to attach to the role"
 }
 
