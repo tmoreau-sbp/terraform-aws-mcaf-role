@@ -3,8 +3,6 @@ locals {
   create_policy = var.create_policy != null ? var.create_policy : var.role_policy != null
 }
 
-provider "aws" {}
-
 data "aws_iam_policy_document" "default" {
   statement {
     actions = [
