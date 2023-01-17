@@ -18,6 +18,7 @@ data "aws_iam_policy_document" "default" {
 resource "aws_iam_role" "default" {
   name                 = "${var.name}${var.postfix ? "Role" : ""}"
   assume_role_policy   = local.assume_policy
+  path                 = var.path
   max_session_duration = var.max_session_duration
   permissions_boundary = var.permissions_boundary
   tags                 = var.tags

@@ -21,6 +21,12 @@ variable "max_session_duration" {
   description = "The maximum session duration (in seconds) for the role"
 }
 
+variable "path" {
+  type        = string
+  default     = "/"
+  description = "Path to the role"
+}
+
 variable "permissions_boundary" {
   type        = string
   default     = null
