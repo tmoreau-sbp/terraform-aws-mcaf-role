@@ -15,6 +15,18 @@ variable "create_policy" {
   description = "Overrule whether the IAM role policy has to be created"
 }
 
+variable "description" {
+  type        = string
+  default     = null
+  description = "The description of the role"
+}
+
+variable "force_detach_policies" {
+  type        = bool
+  default     = false
+  description = "Force detaching any policies the role has before destroying it"
+}
+
 variable "max_session_duration" {
   type        = number
   default     = 3600
@@ -63,8 +75,8 @@ variable "role_policy" {
   description = "The IAM policy to attach to the role"
 }
 
-
 variable "tags" {
   type        = map(string)
+  default     = null
   description = "A mapping of tags to assign to the role"
 }

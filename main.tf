@@ -16,16 +16,19 @@ data "aws_iam_policy_document" "default" {
 }
 
 resource "aws_iam_role" "default" {
-  name                 = "${var.name}${var.postfix ? "Role" : ""}"
-  assume_role_policy   = local.assume_policy
-  max_session_duration = var.max_session_duration
-  path                 = var.path
-  permissions_boundary = var.permissions_boundary
-  tags                 = var.tags
+  name                  = "${var.name}${var.postfix ? "Role" : ""}"
+  assume_role_policy    = local.assume_policy
+  description           = var.description
+  force_detach_policies = var.force_detach_policies
+  max_session_duration  = var.max_session_duration
+  path                  = var.path
+  permissions_boundary  = var.permissions_boundary
+  tags                  = var.tags
 }
 
 resource "aws_iam_role_policy" "default" {
-  count  = local.create_policy ? 1 : 0
+  count = local.create_policy ? 1 : 0
+
   name   = "${var.name}${var.postfix ? "Policy" : ""}"
   role   = aws_iam_role.default.id
   policy = var.role_policy
