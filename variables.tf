@@ -38,11 +38,6 @@ variable "name" {
   type        = string
   default     = null
   description = "Name of the role. Conflicts with `name_prefix`."
-
-  validation {
-    condition     = (var.name == null && var.name_prefix != null) || (var.name != null && var.name_prefix == null)
-    error_message = "Exactly one of 'name' or 'name_prefix' must be defined."
-  }
 }
 
 variable "path" {
