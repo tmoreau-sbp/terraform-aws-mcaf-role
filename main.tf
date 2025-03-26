@@ -1,3 +1,13 @@
+data "aws_iam_policy_document" "default" {
+  statement {
+    actions = ["sts:AssumeRole"]
+    principals {
+      type        = var.principal_type
+      identifiers = var.principal_identifiers
+    }
+  }
+}
+
 locals {
   assume_policy = var.assume_policy != null ? var.assume_policy : data.aws_iam_policy_document.default.json
 
