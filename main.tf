@@ -1,30 +1,18 @@
 locals {
   assume_policy = var.assume_policy != null ? var.assume_policy : data.aws_iam_policy_document.default.json
 
-  # If the user explicitly sets create_policy, honor it.
-  # Otherwise, fall back to checking if role_policy is provided.
   create_policy = (
     var.create_policy != null
     ? var.create_policy
     : (var.role_policy != null)
   )
 
+  # Separate the postfix suffix logic
+  policy_suffix = var.postfix ? "Policy" : ""
+
   policy_name = local.create_policy
-    ? "${var.name}${var.postfix ? "Policy" : ""}"
+    ? "${var.name}${local.policy_suffix}"
     : "${var.name}-empty-policy"
-}
-
-data "aws_iam_policy_document" "default" {
-  statement {
-    actions = [
-      "sts:AssumeRole"
-    ]
-
-    principals {
-      type        = var.principal_type
-      identifiers = var.principal_identifiers
-    }
-  }
 }
 
 resource "aws_iam_role" "default" {
