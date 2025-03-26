@@ -8,6 +8,10 @@ locals {
     ? var.create_policy
     : (var.role_policy != null)
   )
+
+  policy_name = local.create_policy
+    ? "${var.name}${var.postfix ? "Policy" : ""}"
+    : "${var.name}-empty-policy"
 }
 
 data "aws_iam_policy_document" "default" {
@@ -21,10 +25,6 @@ data "aws_iam_policy_document" "default" {
       identifiers = var.principal_identifiers
     }
   }
-
-  policy_name = local.create_policy
-    ? "${var.name}${var.postfix ? "Policy" : ""}"
-    : "${var.name}-empty-policy"
 }
 
 resource "aws_iam_role" "default" {
