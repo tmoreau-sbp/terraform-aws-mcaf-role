@@ -7,12 +7,13 @@ locals {
     : (var.role_policy != null)
   )
 
-  # Separate the postfix suffix logic
   policy_suffix = var.postfix ? "Policy" : ""
 
-  policy_name = local.create_policy
+  policy_name = (
+    local.create_policy
     ? "${var.name}${local.policy_suffix}"
     : "${var.name}-empty-policy"
+  )
 }
 
 resource "aws_iam_role" "default" {
