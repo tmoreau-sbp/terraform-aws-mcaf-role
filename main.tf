@@ -21,6 +21,10 @@ data "aws_iam_policy_document" "default" {
       identifiers = var.principal_identifiers
     }
   }
+
+  policy_name = local.create_policy
+    ? "${var.name}${var.postfix ? "Policy" : ""}"
+    : "${var.name}-empty-policy"
 }
 
 resource "aws_iam_role" "default" {
@@ -41,7 +45,7 @@ data "aws_iam_policy_document" "empty" {
 
 resource "aws_iam_role_policy" "default" {
   # no count, no for_each
-  name        = var.name != null ? "${var.name}${var.postfix ? "Policy" : ""}" : null
+  name        = local.policy_name
   name_prefix = var.name_prefix != null ? "${var.name_prefix}${var.postfix ? "Policy" : ""}" : null
   role        = aws_iam_role.default.id
 
